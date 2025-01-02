@@ -1,0 +1,33 @@
+#Creating HangMan Game 
+a = []
+hidden_word = 'apple'
+limit = len(hidden_word)
+
+while True:
+    answer = input(f"\nThe word is of {len(hidden_word)} letters and you have only {limit} Guesses.\nGuess a Letter in the hidden Word: ").lower().strip()
+    if answer in a:
+        print('You have already guessed this letter.')
+        a.remove(answer)
+
+#Correct/Incorrect guess 
+    if answer in hidden_word:
+        a.append(answer)
+        print('Correct Guess :)\n')
+    else:
+        limit -= 1
+        print('Wrong guess :(\n')
+#Ceating blanks
+    blanks = ''
+    for letter in hidden_word:
+        if letter in a:
+            blanks += letter
+        else:
+            blanks += '_ '
+    print(blanks)
+#Game Exiting
+    if limit == 0:
+        print("You Loose the game.\nThe Word was " + hidden_word.upper())
+        break
+    if '_ ' not in blanks: 
+        print('You Win!!\nThe word was ' + hidden_word.upper())
+        break
